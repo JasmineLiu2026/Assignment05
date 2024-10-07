@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jasmine Liu">
+<meta name="dcterms.date" content="2024-10-07">
+
+<title>Assignment05</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment05</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jasmine Liu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 7, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="research-question-does-a-higher-adult-literacy-rate-or-primary-school-enrolment-rate-correlate-with-better-gdp-per-capita" class="level1">
+<h1>Research Question: Does a higher adult literacy rate or primary school enrolment rate correlate with better GDP per capita?</h1>
+<div id="03c3f2e0" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"/Users/jasmineliu/Downloads/QTM350/Assignment05/wdi.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data.head(<span class="dv">10</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> data.columns.to_list()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(columns)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">"country"</span>].nunique()) </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">##we have 217 countries in our dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['country', 'inflation_rate', 'exports_gdp_share', 'gdp_growth_rate', 'gdp_per_capita', 'adult_literacy_rate', 'primary_school_enrolment_rate', 'education_expenditure_gdp_share', 'measles_immunisation_rate', 'health_expenditure_gdp_share', 'income_inequality', 'unemployment_rate', 'life_expectancy', 'total_population']
+217</code></pre>
+</div>
+</div>
+<p>Since we are interested in adult literacy rate, primary school enrolment rate, GDP growth rates, and GDP per capita, let’s subset the dataset into only these columns for our analysis.</p>
+<div id="571859ae" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> data[[<span class="st">"country"</span>,<span class="st">"adult_literacy_rate"</span>, <span class="st">"primary_school_enrolment_rate"</span>, <span class="st">"gdp_growth_rate"</span>, <span class="st">"gdp_per_capita"</span>]]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">adult_literacy_rate</th>
+<th data-quarto-table-cell-role="th">primary_school_enrolment_rate</th>
+<th data-quarto-table-cell-role="th">gdp_growth_rate</th>
+<th data-quarto-table-cell-role="th">gdp_per_capita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Afghanistan</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>-6.240172</td>
+<td>352.603733</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Albania</td>
+<td>98.5</td>
+<td>95.606712</td>
+<td>4.856402</td>
+<td>6810.114041</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Algeria</td>
+<td>NaN</td>
+<td>108.343933</td>
+<td>3.600000</td>
+<td>5023.252932</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>American Samoa</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.735016</td>
+<td>19673.390102</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Andorra</td>
+<td>NaN</td>
+<td>90.147346</td>
+<td>9.563798</td>
+<td>42350.697069</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>We see that there’s some missing values. Before we proceed to our analysis, let’s first preprocess our dataset.</p>
+<div id="1fd659d4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cleaned_data <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">'adult_literacy_rate'</span>, <span class="st">'primary_school_enrolment_rate'</span>, <span class="st">'gdp_growth_rate'</span>, <span class="st">'gdp_per_capita'</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned_data[<span class="st">"country"</span>].nunique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>32</code></pre>
+</div>
+</div>
+<p>It turns out that after dropping all the missing values, we only have 32 countries left to analyze. Considering the small scale of this assignment, let’s proceed with these countries.</p>
+<div id="4961c7b7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned_data[<span class="st">"country"</span>].unique())</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>display(cleaned_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Albania' 'Bahrain' 'Benin' 'Bhutan' 'Bosnia and Herzegovina'
+ 'Burkina Faso' 'Burundi' 'Cambodia' 'Chad' 'Chile' 'Dominican Republic'
+ 'Ecuador' 'Egypt, Arab Rep.' 'Gambia, The' 'Georgia' 'Guatemala' 'India'
+ 'Kenya' 'Lao PDR' 'Lesotho' 'Madagascar' 'Malawi' 'Morocco' 'Niger'
+ 'Oman' 'Rwanda' 'Senegal' 'Tanzania' 'Uzbekistan' 'Viet Nam'
+ 'West Bank and Gaza' 'Zimbabwe']</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">adult_literacy_rate</th>
+<th data-quarto-table-cell-role="th">primary_school_enrolment_rate</th>
+<th data-quarto-table-cell-role="th">gdp_growth_rate</th>
+<th data-quarto-table-cell-role="th">gdp_per_capita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Albania</td>
+<td>98.500000</td>
+<td>95.606712</td>
+<td>4.856402</td>
+<td>6810.114041</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">14</td>
+<td>Bahrain</td>
+<td>97.872482</td>
+<td>92.344193</td>
+<td>4.891500</td>
+<td>30146.925026</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>Benin</td>
+<td>47.099998</td>
+<td>113.048912</td>
+<td>6.253245</td>
+<td>1304.994797</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">22</td>
+<td>Bhutan</td>
+<td>72.099998</td>
+<td>103.800003</td>
+<td>5.213868</td>
+<td>3704.018395</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>Bosnia and Herzegovina</td>
+<td>98.300003</td>
+<td>87.822220</td>
+<td>4.226811</td>
+<td>7587.588173</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">30</td>
+<td>Burkina Faso</td>
+<td>34.490002</td>
+<td>82.356796</td>
+<td>1.777915</td>
+<td>830.043966</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">31</td>
+<td>Burundi</td>
+<td>75.540001</td>
+<td>103.901001</td>
+<td>1.848999</td>
+<td>259.025031</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>Cambodia</td>
+<td>83.779999</td>
+<td>109.959000</td>
+<td>5.239810</td>
+<td>1759.608023</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">38</td>
+<td>Chad</td>
+<td>27.280001</td>
+<td>90.364120</td>
+<td>2.804341</td>
+<td>699.463254</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">40</td>
+<td>Chile</td>
+<td>97.160004</td>
+<td>100.192268</td>
+<td>2.058740</td>
+<td>15411.173954</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">56</td>
+<td>Dominican Republic</td>
+<td>95.500000</td>
+<td>100.492287</td>
+<td>4.858324</td>
+<td>10111.245711</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">57</td>
+<td>Ecuador</td>
+<td>93.948120</td>
+<td>97.534103</td>
+<td>6.186139</td>
+<td>6476.644575</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">58</td>
+<td>Egypt, Arab Rep.</td>
+<td>74.500000</td>
+<td>91.590179</td>
+<td>6.587846</td>
+<td>4295.407496</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">71</td>
+<td>Gambia, The</td>
+<td>58.669998</td>
+<td>92.320000</td>
+<td>4.917821</td>
+<td>803.808655</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">72</td>
+<td>Georgia</td>
+<td>99.574989</td>
+<td>104.548119</td>
+<td>10.958532</td>
+<td>6729.846599</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">80</td>
+<td>Guatemala</td>
+<td>84.269997</td>
+<td>103.906227</td>
+<td>4.118004</td>
+<td>5473.208564</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">89</td>
+<td>India</td>
+<td>76.322777</td>
+<td>111.084000</td>
+<td>6.987039</td>
+<td>2366.309609</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">101</td>
+<td>Kenya</td>
+<td>82.879997</td>
+<td>97.185997</td>
+<td>4.846635</td>
+<td>2099.298568</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">108</td>
+<td>Lao PDR</td>
+<td>87.519997</td>
+<td>97.223000</td>
+<td>2.707427</td>
+<td>2054.430781</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">111</td>
+<td>Lesotho</td>
+<td>82.010002</td>
+<td>88.611778</td>
+<td>1.285504</td>
+<td>992.857328</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">118</td>
+<td>Madagascar</td>
+<td>77.480003</td>
+<td>138.192001</td>
+<td>3.796199</td>
+<td>516.772197</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">119</td>
+<td>Malawi</td>
+<td>68.080002</td>
+<td>126.438004</td>
+<td>0.923450</td>
+<td>643.433196</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">133</td>
+<td>Morocco</td>
+<td>77.349998</td>
+<td>114.169991</td>
+<td>1.258544</td>
+<td>3441.991455</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">143</td>
+<td>Niger</td>
+<td>38.099998</td>
+<td>68.331413</td>
+<td>11.900000</td>
+<td>588.899048</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">148</td>
+<td>Oman</td>
+<td>97.339058</td>
+<td>90.096809</td>
+<td>4.311254</td>
+<td>25056.794861</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">162</td>
+<td>Rwanda</td>
+<td>78.763184</td>
+<td>134.930344</td>
+<td>8.157734</td>
+<td>966.571293</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">167</td>
+<td>Senegal</td>
+<td>57.669998</td>
+<td>83.278702</td>
+<td>3.821856</td>
+<td>1594.985153</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">191</td>
+<td>Tanzania</td>
+<td>82.019997</td>
+<td>95.504997</td>
+<td>4.566006</td>
+<td>1193.359619</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">208</td>
+<td>Uzbekistan</td>
+<td>99.999977</td>
+<td>94.194000</td>
+<td>5.668817</td>
+<td>2276.161233</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">211</td>
+<td>Viet Nam</td>
+<td>96.133263</td>
+<td>123.134003</td>
+<td>8.123514</td>
+<td>4179.011790</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">213</td>
+<td>West Bank and Gaza</td>
+<td>97.843842</td>
+<td>91.764587</td>
+<td>4.082760</td>
+<td>3799.955270</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">216</td>
+<td>Zimbabwe</td>
+<td>89.849998</td>
+<td>95.790001</td>
+<td>6.522375</td>
+<td>1676.821489</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The countries we have: ‘Albania’, ‘Bahrain’, ‘Benin’, ‘Bhutan’, ‘Bosnia and Herzegovina’, ‘Burkina Faso’, ‘Burundi’, ‘Cambodia’, ‘Chad’, ‘Chile’, ‘Dominican Republic’, ‘Ecuador’, ‘Egypt, Arab Rep.’, ‘Gambia, The’, ‘Georgia’, ‘Guatemala’, ‘India’, ‘Kenya’, ‘Lao PDR’, ‘Lesotho’, ‘Madagascar’, ‘Malawi’, ‘Morocco’, ‘Niger’, ‘Oman’, ‘Rwanda’, ‘Senegal’, ‘Tanzania’, ‘Uzbekistan’, ‘Viet Nam’, ‘West Bank and Gaza’, ‘Zimbabwe’</p>
+<p>This means that the analysis we conduct will only be applicable to these countries.</p>
+<p>Here’s descriptive analysis that provides us an idea of the features’ mean values, IQR values, and min, max values!</p>
+<div id="d7329a20" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display(cleaned_data[<span class="st">'adult_literacy_rate'</span>].describe())</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>display(cleaned_data[<span class="st">'primary_school_enrolment_rate'</span>].describe())</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>display(cleaned_data[<span class="st">'gdp_growth_rate'</span>].describe())</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>display(cleaned_data[<span class="st">'gdp_per_capita'</span>].describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>count    32.000000
+mean     78.998365
+std      20.067613
+min      27.280001
+25%      73.900000
+50%      82.449997
+75%      96.389948
+max      99.999977
+Name: adult_literacy_rate, dtype: float64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>count     32.000000
+mean     100.616118
+std       15.017442
+min       68.331413
+25%       91.720985
+50%       97.204498
+75%      105.900839
+max      138.192001
+Name: primary_school_enrolment_rate, dtype: float64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>count    32.000000
+mean      4.867419
+std       2.564314
+min       0.923450
+25%       3.548235
+50%       4.851518
+75%       6.202916
+max      11.900000
+Name: gdp_growth_rate, dtype: float64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>count       32.000000
+mean      4870.336536
+std       6839.795005
+min        259.025031
+25%        986.285820
+50%       2187.729901
+75%       5724.067567
+max      30146.925026
+Name: gdp_per_capita, dtype: float64</code></pre>
+</div>
+</div>
+<p>Now, let’s do some analysis!</p>
+<div id="ce5501a9" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> cleaned_data[[<span class="st">'adult_literacy_rate'</span>, <span class="st">'primary_school_enrolment_rate'</span>, <span class="st">'gdp_growth_rate'</span>, <span class="st">'gdp_per_capita'</span>]].corr()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation_matrix, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, square<span class="op">=</span><span class="va">True</span>, cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.8</span>})</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Matrix Heatmap'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-1.png" width="680" height="629" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We see that the correlation between GDP per capita and adult literacy rate is 0.47, let’s see what they look like in a scatterplot!</p>
+<div id="cell-fig-literacy-vs-gdp" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-literacy-vs-gdp" class="quarto-float quarto-figure quarto-figure-center anchored" width="610" height="449">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-literacy-vs-gdp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-literacy-vs-gdp-output-1.png" id="fig-literacy-vs-gdp" width="610" height="449" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-literacy-vs-gdp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see a pretty clear exponential curve that as adult literacy rate increases, the GDP per capita tends to increase as the adult literacy rate reaches above 70%!</p>
+<div id="cell-fig-enrolment-vs-gdp" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div id="fig-enrolment-vs-gdp" class="quarto-float quarto-figure quarto-figure-center anchored" width="611" height="449">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-enrolment-vs-gdp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-enrolment-vs-gdp-output-1.png" id="fig-enrolment-vs-gdp" width="611" height="449" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-enrolment-vs-gdp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Unlike the previous figure, we can’t really see a general trend between primary school enrolment rate vs gdp per capita.</p>
+<p>Let’s construct a bar graph that classify the adult literacy rate into low, medium, high, and very high VS GDP per capita!</p>
+<div id="cell-fig-bar-literacy-vs-gdp" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/sn/6ghc2n6d7qd3q_hb0b_9_cnr0000gn/T/ipykernel_5628/2009248937.py:1: SettingWithCopyWarning:
+
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+
+/var/folders/sn/6ghc2n6d7qd3q_hb0b_9_cnr0000gn/T/ipykernel_5628/2009248937.py:6: FutureWarning:
+
+
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-bar-literacy-vs-gdp" class="quarto-float quarto-figure quarto-figure-center anchored" width="685" height="523">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bar-literacy-vs-gdp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-bar-literacy-vs-gdp-output-2.png" id="fig-bar-literacy-vs-gdp" width="685" height="523" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bar-literacy-vs-gdp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Based on <a href="#fig-literacy-vs-gdp">Figure 1</a> and <a href="#fig-bar-literacy-vs-gdp">Figure 3</a>, there is a noticeable correlation between adult literacy rates and GDP per capita, specifically telling us that higher literacy rate is associated with higher GDP per capita. This finding aligns with other research. According to Dr.&nbsp;Rahman from the University of Chittagong, “taking proper initiative to increase literacy rate of a country will reduce its unemployment rate and increase PGDP resulting development of the country” . Additionally, the World Literacy Foundation highlights the importance of education in economic development as “the cost of illiteracy to the global economy is estimated at USD $1.19 trillion” in 2022 .</p>
+<pre class="{markdown, table-cap: &quot;Key Statistics by Country&quot;}"><code>|   | country                 | adult_literacy_rate | primary_school_enrolment_rate | gdp_growth_rate | gdp_per_capita  |
+|---|-------------------------|---------------------|-------------------------------|-----------------|-----------------|
+| 1 | Albania                 | 98.500000           | 95.606712                      | 4.856402        | 6810.114041     |
+| 2 | Bahrain                 | 97.872482           | 92.344193                      | 4.891500        | 30146.925026    |
+| 3 | Benin                   | 47.099998           | 113.048912                     | 6.253245        | 1304.994797     |
+| 4 | Bhutan                  | 72.099998           | 103.800003                     | 5.213868        | 3704.018395     |
+| 5 | Bosnia and Herzegovina  | 98.300003           | 87.822220                      | 4.226811        | 7587.588173     |
+| 6 | Burkina Faso            | 34.490002           | 82.356796                      | 1.777915        | 830.043966      |
+| 7 | Burundi                 | 75.540001           | 103.901001                     | 1.848999        | 259.025031      |
+| 8 | Cambodia                | 83.779999           | 109.959000                     | 5.239810        | 1759.608023     |
+| 9 | Chad                    | 27.280001           | 90.364120                      | 2.804341        | 699.463254      |
+|10 | Chile                   | 97.160004           | 100.192268                     | 2.058740        | 15411.173954    |
+|11 | Dominican Republic      | 95.500000           | 100.492287                     | 4.858324        | 10111.245711    |
+|12 | Ecuador                 | 93.948120           | 97.534103                      | 6.186139        | 6476.644575     |
+|13 | Egypt, Arab Rep.        | 74.500000           | 91.590179                      | 6.587846        | 4295.407496     |
+|14 | Gambia, The             | 58.669998           | 92.320000                      | 4.917821        | 803.808655      |
+|15 | Georgia                 | 99.574989           | 104.548119                     | 10.958532       | 6729.846599     |
+|16 | Guatemala               | 84.269997           | 103.906227                     | 4.118004        | 5473.208564     |
+|17 | India                   | 76.322777           | 111.084000                     | 6.987039        | 2366.309609     |
+|18 | Kenya                   | 82.879997           | 97.185997                      | 4.846635        | 2099.298568     |
+|19 | Lao PDR                 | 87.519997           | 97.223000                      | 2.707427        | 2054.430781     |
+|20 | Lesotho                 | 82.010002           | 88.611778                      | 1.285504        | 992.857328      |
+|21 | Madagascar              | 77.480003           | 138.192001                     | 3.796199        | 516.772197      |
+|22 | Malawi                  | 68.080002           | 126.438004                     | 0.923450        | 643.433196      |
+|23 | Morocco                 | 77.349998           | 114.169991                     | 1.258544        | 3441.991455     |
+|24 | Niger                   | 38.099998           | 68.331413                      | 11.900000       | 588.899048      |
+|25 | Oman                    | 97.339058           | 90.096809                      | 4.311254        | 25056.794861    |
+|26 | Rwanda                  | 78.763184           | 134.930344                     | 8.157734        | 966.571293      |
+|27 | Senegal                 | 57.669998           | 83.278702                      | 3.821856        | 1594.985153     |
+|28 | Tanzania                | 82.019997           | 95.504997                      | 4.566006        | 1193.359619     |
+|29 | Uzbekistan              | 99.999977           | 94.194000                      | 5.668817        | 2276.161233     |
+|30 | Viet Nam                | 96.133263           | 123.134003                     | 8.123514        | 4179.011790     |
+|31 | West Bank and Gaza      | 97.843842           | 91.764587                      | 4.082760        | 3799.955270     |
+|32 | Zimbabwe                | 89.849998           | 95.790001                      | 6.522375        | 1676.821489     |</code></pre>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
