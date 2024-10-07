@@ -104,6 +104,7 @@ plt.savefig('literacy_vs_gdp.png', bbox_inches='tight')
 plt.show()
 ```
 
+
 We can see a pretty clear exponential curve that as adult literacy rate increases, the GDP per capita tends to increase as the adult literacy rate reaches above 70%!
 
 ```{python, fig-scap='Firgure 2: Primary School Enrolment Rate VS GDP per Capita'. Source: The World Bank (2022)}
@@ -129,12 +130,12 @@ Let's construct a bar graph that classify the adult literacy rate into low, medi
 #| echo: false
 #| eval: true
 
-cleaned_data['literacy_rate_group'] = pd.cut(df['adult_literacy_rate'], bins=4, labels=["Low", "Medium", "High", "Very High"])
+cleaned_data['literacy_rate_group'] = pd.cut(cleaned_data['adult_literacy_rate'], bins=4, labels=["Low", "Medium", "High", "Very High"])
 
 
 plt.figure(figsize=(8, 6))
 
-sns.barplot(x='literacy_rate_group', y='gdp_per_capita', data=cleaned_data, palette='Blues')
+sns.barplot(x='literacy_rate_group', y='gdp_per_capita', data=cleaned_data, palette='Blues', hue ='literacy_rate_group')
 plt.title("Average GDP per Capita by Adult Literacy Rate Group")
 plt.xlabel("Adult Literacy Rate Group")
 plt.ylabel("Average GDP per Capita")
@@ -142,7 +143,7 @@ plt.show()
 
 ```
 
-Based on [Figure 1](#fig-literacy-vs-gdp) and [Figure 3](#fig-bar-literacy-vs-gdp), there is a noticeable correlation between adult literacy rates and GDP per capita, specifically telling us that higher literacy rate is associated with higher GDP per capita. This finding aligns with other research. According to Dr. Rahman from the University of Chittagong, "taking proper initiative to  increase literacy rate of  a country will reduce its unemployment rate and increase PGDP resulting development of the country" \cite{inproceedings}. Additionally,  the World Literacy Foundation highlights the importance of education in economic development as "the cost of illiteracy to the global economy is estimated at USD $1.19 trillion" in 2022 \cite{cree2022}.
+Based on [Figure 1](#fig-literacy-vs-gdp) and [Figure 3](#fig-bar-literacy-vs-gdp), there is a noticeable correlation between adult literacy rates and GDP per capita, specifically telling us that higher literacy rate is associated with higher GDP per capita. This finding aligns with other research. According to Dr. Rahman from the University of Chittagong, "taking proper initiative to  increase literacy rate of  a country will reduce its unemployment rate and increase PGDP resulting development of the country" [@inproceedings]. Additionally,  the World Literacy Foundation highlights the importance of education in economic development as "the cost of illiteracy to the global economy is estimated at USD $1.19 trillion" in 2022 [@cree2022].
 
 ```{markdown, table-cap: "Key Statistics by Country"}
 |   | country                 | adult_literacy_rate | primary_school_enrolment_rate | gdp_growth_rate | gdp_per_capita  |

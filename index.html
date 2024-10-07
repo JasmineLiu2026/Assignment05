@@ -56,7 +56,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -116,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="research-question-does-a-higher-adult-literacy-rate-or-primary-school-enrolment-rate-correlate-with-better-gdp-per-capita" class="level1">
 <h1>Research Question: Does a higher adult literacy rate or primary school enrolment rate correlate with better GDP per capita?</h1>
-<div id="03c3f2e0" class="cell" data-execution_count="1">
+<div id="5a592628" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -134,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Since we are interested in adult literacy rate, primary school enrolment rate, GDP growth rates, and GDP per capita, let’s subset the dataset into only these columns for our analysis.</p>
-<div id="571859ae" class="cell" data-execution_count="2">
+<div id="0f35e0f7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> data[[<span class="st">"country"</span>,<span class="st">"adult_literacy_rate"</span>, <span class="st">"primary_school_enrolment_rate"</span>, <span class="st">"gdp_growth_rate"</span>, <span class="st">"gdp_per_capita"</span>]]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -201,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We see that there’s some missing values. Before we proceed to our analysis, let’s first preprocess our dataset.</p>
-<div id="1fd659d4" class="cell" data-execution_count="3">
+<div id="c8d416f4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cleaned_data <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">'adult_literacy_rate'</span>, <span class="st">'primary_school_enrolment_rate'</span>, <span class="st">'gdp_growth_rate'</span>, <span class="st">'gdp_per_capita'</span>])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned_data[<span class="st">"country"</span>].nunique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -210,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>It turns out that after dropping all the missing values, we only have 32 countries left to analyze. Considering the small scale of this assignment, let’s proceed with these countries.</p>
-<div id="4961c7b7" class="cell" data-execution_count="4">
+<div id="1794c7be" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned_data[<span class="st">"country"</span>].unique())</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>display(cleaned_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -502,7 +522,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The countries we have: ‘Albania’, ‘Bahrain’, ‘Benin’, ‘Bhutan’, ‘Bosnia and Herzegovina’, ‘Burkina Faso’, ‘Burundi’, ‘Cambodia’, ‘Chad’, ‘Chile’, ‘Dominican Republic’, ‘Ecuador’, ‘Egypt, Arab Rep.’, ‘Gambia, The’, ‘Georgia’, ‘Guatemala’, ‘India’, ‘Kenya’, ‘Lao PDR’, ‘Lesotho’, ‘Madagascar’, ‘Malawi’, ‘Morocco’, ‘Niger’, ‘Oman’, ‘Rwanda’, ‘Senegal’, ‘Tanzania’, ‘Uzbekistan’, ‘Viet Nam’, ‘West Bank and Gaza’, ‘Zimbabwe’</p>
 <p>This means that the analysis we conduct will only be applicable to these countries.</p>
 <p>Here’s descriptive analysis that provides us an idea of the features’ mean values, IQR values, and min, max values!</p>
-<div id="d7329a20" class="cell" data-execution_count="5">
+<div id="218839ac" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display(cleaned_data[<span class="st">'adult_literacy_rate'</span>].describe())</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>display(cleaned_data[<span class="st">'primary_school_enrolment_rate'</span>].describe())</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>display(cleaned_data[<span class="st">'gdp_growth_rate'</span>].describe())</span>
@@ -553,7 +573,7 @@ Name: gdp_per_capita, dtype: float64</code></pre>
 </div>
 </div>
 <p>Now, let’s do some analysis!</p>
-<div id="ce5501a9" class="cell" data-execution_count="6">
+<div id="3c132d3a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> cleaned_data[[<span class="st">'adult_literacy_rate'</span>, <span class="st">'primary_school_enrolment_rate'</span>, <span class="st">'gdp_growth_rate'</span>, <span class="st">'gdp_per_capita'</span>]].corr()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(correlation_matrix, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, square<span class="op">=</span><span class="va">True</span>, cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.8</span>})</span>
@@ -601,20 +621,13 @@ Figure&nbsp;2
 <p>Let’s construct a bar graph that classify the adult literacy rate into low, medium, high, and very high VS GDP per capita!</p>
 <div id="cell-fig-bar-literacy-vs-gdp" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/sn/6ghc2n6d7qd3q_hb0b_9_cnr0000gn/T/ipykernel_5628/2009248937.py:1: SettingWithCopyWarning:
+<pre><code>/var/folders/sn/6ghc2n6d7qd3q_hb0b_9_cnr0000gn/T/ipykernel_6242/1173380749.py:1: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-
-/var/folders/sn/6ghc2n6d7qd3q_hb0b_9_cnr0000gn/T/ipykernel_5628/2009248937.py:6: FutureWarning:
-
-
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
-
 </code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -630,7 +643,7 @@ Figure&nbsp;3
 </div>
 </div>
 </div>
-<p>Based on <a href="#fig-literacy-vs-gdp">Figure 1</a> and <a href="#fig-bar-literacy-vs-gdp">Figure 3</a>, there is a noticeable correlation between adult literacy rates and GDP per capita, specifically telling us that higher literacy rate is associated with higher GDP per capita. This finding aligns with other research. According to Dr.&nbsp;Rahman from the University of Chittagong, “taking proper initiative to increase literacy rate of a country will reduce its unemployment rate and increase PGDP resulting development of the country” . Additionally, the World Literacy Foundation highlights the importance of education in economic development as “the cost of illiteracy to the global economy is estimated at USD $1.19 trillion” in 2022 .</p>
+<p>Based on <a href="#fig-literacy-vs-gdp">Figure 1</a> and <a href="#fig-bar-literacy-vs-gdp">Figure 3</a>, there is a noticeable correlation between adult literacy rates and GDP per capita, specifically telling us that higher literacy rate is associated with higher GDP per capita. This finding aligns with other research. According to Dr.&nbsp;Rahman from the University of Chittagong, “taking proper initiative to increase literacy rate of a country will reduce its unemployment rate and increase PGDP resulting development of the country” <span class="citation" data-cites="inproceedings">(<a href="#ref-inproceedings" role="doc-biblioref">Rahman 2011</a>)</span>. Additionally, the World Literacy Foundation highlights the importance of education in economic development as “the cost of illiteracy to the global economy is estimated at USD $1.19 trillion” in 2022 <span class="citation" data-cites="cree2022">(<a href="#ref-cree2022" role="doc-biblioref">Cree, Kay, and Steward 2022</a>)</span>.</p>
 <pre class="{markdown, table-cap: &quot;Key Statistics by Country&quot;}"><code>|   | country                 | adult_literacy_rate | primary_school_enrolment_rate | gdp_growth_rate | gdp_per_capita  |
 |---|-------------------------|---------------------|-------------------------------|-----------------|-----------------|
 | 1 | Albania                 | 98.500000           | 95.606712                      | 4.856402        | 6810.114041     |
@@ -665,9 +678,17 @@ Figure&nbsp;3
 |30 | Viet Nam                | 96.133263           | 123.134003                     | 8.123514        | 4179.011790     |
 |31 | West Bank and Gaza      | 97.843842           | 91.764587                      | 4.082760        | 3799.955270     |
 |32 | Zimbabwe                | 89.849998           | 95.790001                      | 6.522375        | 1676.821489     |</code></pre>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cree2022" class="csl-entry" role="listitem">
+Cree, Anthony, Andrew Kay, and June Steward. 2022. <span>“The Economic Social Cost of Illiteracy.”</span> World Literacy Foundation.
+</div>
+<div id="ref-inproceedings" class="csl-entry" role="listitem">
+Rahman, M. S. 2011. <span>“Relationship Among GDP, Per Capita GDP, Literacy Rate and Unemployment Rate.”</span> In.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
