@@ -9,30 +9,33 @@ format:
     transition: "fade"
 ---
 
-# Title Slide
+# Research Question
 
 Does a higher adult literacy rate or primary school enrolment rate correlate with better GDP per capita?
 
 ---
 
-# Slide 1: Introduction
+# Introduction
 
-- Overview of the significance of literacy rates.
-- Importance of economic development.
+- Using the World Bank dataset in 2022
+- The report include data preprocessing and simple analysis with visualizations
 
 ---
 
-# Slide 2: Correlation Between Literacy Rates and GDP
+# Correlation Between Literacy Rates and GDP
 
 Based on [Figure 1](#fig-literacy-vs-gdp) and [Figure 3](#fig-bar-literacy-vs-gdp), there is a noticeable correlation between adult literacy rates and GDP per capita. 
-![Adult Literacy Rate vs. GDP per Capita](literacy_vs_gdp.png)
 
 - Higher literacy rates are associated with higher GDP per capita.
 - This finding aligns with other research.
 
 ---
 
-# Slide 3: Correlation Between Primary Enrolment Rate and GDP
+![Adult Literacy Rate vs. GDP per Capita](literacy_vs_gdp.png)
+
+---
+
+# Correlation Between Primary Enrolment Rate and GDP
 
 Based on [Figure 2](#fig-enrolment-vs-gdp), there is no noticeable correlation between primary school enrolment rate and GDP per capita.
 
@@ -40,7 +43,7 @@ Based on [Figure 2](#fig-enrolment-vs-gdp), there is no noticeable correlation b
 
 ---
 
-# Slide 4: Expert Insights
+# Expert Insights
 
 According to Dr. Rahman from the University of Chittagong:
 
@@ -48,7 +51,7 @@ According to Dr. Rahman from the University of Chittagong:
 
 ---
 
-# Slide 5: Economic Impact of Illiteracy
+# Economic Impact of Illiteracy
 
 The World Literacy Foundation highlights the importance of education in economic development:
 
@@ -56,7 +59,7 @@ The World Literacy Foundation highlights the importance of education in economic
 
 ---
 
-# Slide 6: Conclusion
+# Conclusion
 
 - Higher literacy rates contribute to economic growth.
 - Importance of initiatives to improve education and literacy.
